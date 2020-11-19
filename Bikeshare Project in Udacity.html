@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://velog.io/@pss2138/Bikeshare-Project-in-Udacity -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Bikeshare Project in Udacity</title><link data-rh="true" rel="canonical" href="https://velog.io/@pss2138/Bikeshare-Project-in-Udacity"><meta data-rh="true" property="fb:app_id" content="203040656938507"><meta data-rh="true" property="og:image" content="https://images.velog.io/velog.png"><meta data-rh="true" name="description" content="import timeimport pandas as pdimport numpy as npCITY_DATA = { &#39;chicago&#39;: &#39;chicago.csv&#39;,              &#39;new york city&#39;: &#39;new_york_city.csv&#39;,            "><meta data-rh="true" property="og:url" content="https://velog.io/@pss2138/Bikeshare-Project-in-Udacity"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="og:title" content="Bikeshare Project in Udacity"><meta data-rh="true" property="og:description" content="import timeimport pandas as pdimport numpy as npCITY_DATA = { &#39;chicago&#39;: &#39;chicago.csv&#39;,              &#39;new york city&#39;: &#39;new_york_city.csv&#39;,            "><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:title" content="Bikeshare Project in Udacity"><meta data-rh="true" name="twitter:description" content="import timeimport pandas as pdimport numpy as npCITY_DATA = { &#39;chicago&#39;: &#39;chicago.csv&#39;,              &#39;new york city&#39;: &#39;new_york_city.csv&#39;,            "><link data-chunk="main" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/runtime-main.a2e86c39.js.download"><link data-chunk="main" rel="preload" as="style" href="./Bikeshare Project in Udacity_files/18.5dbdccff.chunk.css"><link data-chunk="main" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/18.6ea46c66.chunk.js.download"><link data-chunk="main" rel="preload" as="style" href="./Bikeshare Project in Udacity_files/main.e7869632.chunk.css"><link data-chunk="main" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/main.e7dd09ea.chunk.js.download"><link data-chunk="pages-velog-VelogPage" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/pages-velog-VelogPage.a264c56a.chunk.js.download"><link data-chunk="PostPage" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/0.7f967f47.chunk.js.download"><link data-chunk="PostPage" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/21.69db74a2.chunk.js.download"><link data-chunk="PostPage" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/1.f84319cc.chunk.js.download"><link data-chunk="PostPage" rel="preload" as="script" href="./Bikeshare Project in Udacity_files/PostPage.506c08d0.chunk.js.download"><link data-chunk="main" rel="stylesheet" href="./Bikeshare Project in Udacity_files/18.5dbdccff.chunk.css"><link data-chunk="main" rel="stylesheet" href="./Bikeshare Project in Udacity_files/main.e7869632.chunk.css"><link rel="shortcut icon" href="https://static.velog.io/favicon.ico"><link rel="apple-touch-icon" sizes="152x152" href="https://static.velog.io/favicons/apple-icon-152x152.png"><link rel="icon" sizes="32x32" href="https://static.velog.io/favicons/favicon-32x32.png"><link rel="icon" sizes="96x96" href="https://static.velog.io/favicons/favicon-96x96.png"><link rel="icon" sizes="16x16" href="https://static.velog.io/favicons/favicon-16x16.png"><meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript" async="" src="./Bikeshare Project in Udacity_files/analytics.js.download"></script><script src="./Bikeshare Project in Udacity_files/sdk.js.download" async="" crossorigin="anonymous"></script><script id="facebook-jssdk" src="./Bikeshare Project in Udacity_files/sdk.js(1).download"></script><script async="" src="./Bikeshare Project in Udacity_files/js"></script><script>window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-125599395-1');</script><style data-styled="" data-styled-version="4.4.1"></style><style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head><body style="overflow-y: initial;"><div id="root"><div class="__jazzbar false false" style="width:0%"></div><div class="sc-jAaTju fNCBho sc-jDwBTQ efksxK"><div class="sc-kpOJdX fjWcOZ"><div class="sc-fjdhpX iqwyib sc-ckVGcZ iRiFyN"><div class="sc-kgoBCf dIvDll"><a class="sc-kGXeez jahpmH" href="https://velog.io/"><svg width="192" height="192" viewBox="0 0 192 192" fill="none"><rect width="192" height="192" fill="currentColor" rx="24"></rect><path d="M49 65.48V57.92C53.8 56.36 59.44 54.68 65.92 52.88C72.4 50.96 76.78 50 79.06 50C84.1 50 87.1 52.4 88.06 57.2L99.76 123.62C103.48 118.7 106.54 114.56 108.94 111.2C112.66 105.92 116.08 99.86 119.2 93.02C122.44 86.18 124.06 80.06 124.06 74.66C124.06 71.42 123.16 68.84 121.36 66.92C119.68 64.88 116.5 62.3 111.82 59.18C116.62 53.06 122.62 50 129.82 50C133.66 50 136.84 51.14 139.36 53.42C142 55.7 143.32 59.06 143.32 63.5C143.32 70.94 140.2 80.24 133.96 91.4C127.84 102.44 116.02 119.06 98.5 141.26L80.68 142.52L67 65.48H49Z" fill="white"></path></svg></a><a class="user-logo" href="https://velog.io/@pss2138">pss2138.log</a></div><div class="sc-jKJlTe hoxhZc"><a class="sc-dxgOiQ ghkPCb" href="https://velog.io/search?username=pss2138"><svg width="17" height="17" viewBox="0 0 17 17"><path fill-rule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clip-rule="evenodd"></path></svg></a><button color="darkGray" class="sc-VigVT bdVhZw">로그인</button></div></div></div><div style="margin-top: 0px; display: block;" class="sc-brqgnP fCITDl"><div class="sc-kpOJdX fjWcOZ"><div class="sc-fjdhpX iqwyib sc-ckVGcZ iRiFyN"><div class="sc-kgoBCf dIvDll"><a class="sc-kGXeez jahpmH" href="https://velog.io/"><svg width="192" height="192" viewBox="0 0 192 192" fill="none"><rect width="192" height="192" fill="currentColor" rx="24"></rect><path d="M49 65.48V57.92C53.8 56.36 59.44 54.68 65.92 52.88C72.4 50.96 76.78 50 79.06 50C84.1 50 87.1 52.4 88.06 57.2L99.76 123.62C103.48 118.7 106.54 114.56 108.94 111.2C112.66 105.92 116.08 99.86 119.2 93.02C122.44 86.18 124.06 80.06 124.06 74.66C124.06 71.42 123.16 68.84 121.36 66.92C119.68 64.88 116.5 62.3 111.82 59.18C116.62 53.06 122.62 50 129.82 50C133.66 50 136.84 51.14 139.36 53.42C142 55.7 143.32 59.06 143.32 63.5C143.32 70.94 140.2 80.24 133.96 91.4C127.84 102.44 116.02 119.06 98.5 141.26L80.68 142.52L67 65.48H49Z" fill="white"></path></svg></a><a class="user-logo" href="https://velog.io/@pss2138">pss2138.log</a></div><div class="sc-jKJlTe hoxhZc"><a class="sc-dxgOiQ ghkPCb" href="https://velog.io/search?username=pss2138"><svg width="17" height="17" viewBox="0 0 17 17"><path fill-rule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clip-rule="evenodd"></path></svg></a><button color="darkGray" class="sc-VigVT bdVhZw">로그인</button></div></div></div></div><div class="sc-kgAjT gXJKuQ sc-gGBfsJ kVIKkh"><div class="head-wrapper"><h1>Bikeshare Project in Udacity</h1><div class="sc-jnlKLf efgoQf"><div class="information"><span class="username"><a href="https://velog.io/@pss2138">pss2138</a></span><span class="separator">·</span><span>2020년 4월 3일</span></div><div class="sc-hEsumM dBRwrG"><button data-testid="like-btn" class="sc-bMVAic jFHTOw"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg><span>0</span></button></div></div><div class="sc-uJMKN fqTxZE"></div><div class="sc-kPVwWT iTMCVO"><div class="sc-kfGgVZ ckKmlg"><div class="sc-cHGsZl bHiaRe sc-esjQYD efmnkt" style=""><div data-testid="like" active="false" style="transform:scale(1)" class="sc-kIPQKe gbjiaL"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg></div><div class="sc-eXEjpC czOdAw">0</div><div class="sc-ibxdXY kvVnUJ"><div class="positioner"><div style="opacity:0;transform:translate(0px, -0px)" class="sc-RefOD IiWIK"><div class="sc-kIPQKe gbjiaL"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg></div></div><div style="opacity:0;transform:translate(0px)" class="sc-RefOD IiWIK"><div class="sc-kIPQKe gbjiaL"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></div></div><div style="opacity:0;transform:translate(0px, 0px)" class="sc-RefOD IiWIK"><div class="sc-kIPQKe gbjiaL"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M21.586 10.461l-10.05 10.075c-1.95 1.949-5.122 1.949-7.071 0s-1.95-5.122 0-7.072l10.628-10.585c1.17-1.17 3.073-1.17 4.243 0 1.169 1.17 1.17 3.072 0 4.242l-8.507 8.464c-.39.39-1.024.39-1.414 0s-.39-1.024 0-1.414l7.093-7.05-1.415-1.414-7.093 7.049c-1.172 1.172-1.171 3.073 0 4.244s3.071 1.171 4.242 0l8.507-8.464c.977-.977 1.464-2.256 1.464-3.536 0-2.769-2.246-4.999-5-4.999-1.28 0-2.559.488-3.536 1.465l-10.627 10.583c-1.366 1.368-2.05 3.159-2.05 4.951 0 3.863 3.13 7 7 7 1.792 0 3.583-.684 4.95-2.05l10.05-10.075-1.414-1.414z" fill="currentColor"></path></svg></div></div></div></div><div><div style="position:relative" class="sc-kIPQKe gbjiaL"><svg width="24" height="24" viewBox="0 0 24 24" class="share"><path fill="currentColor" d="M5 7c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5zm11.122 12.065c-.073.301-.122.611-.122.935 0 2.209 1.791 4 4 4s4-1.791 4-4-1.791-4-4-4c-1.165 0-2.204.506-2.935 1.301l-5.488-2.927c-.23.636-.549 1.229-.943 1.764l5.488 2.927zm7.878-15.065c0-2.209-1.791-4-4-4s-4 1.791-4 4c0 .324.049.634.122.935l-5.488 2.927c.395.535.713 1.127.943 1.764l5.488-2.927c.731.795 1.77 1.301 2.935 1.301 2.209 0 4-1.791 4-4z"></path></svg></div></div></div></div></div><div class="sc-iQKALj fuuRDk"><div class="sc-bwCtUz kgTdOZ"><div class="sc-cHGsZl bHiaRe sc-hrWEMg tqZZw" style="position: fixed; top: 112px;"></div></div></div><div class="sc-cJSrbW ktBVza"><h2><a href="https://velog.io/@pss2138/series/Projects">Projects</a></h2><svg width="32" height="48" fill="none" viewBox="0 0 32 48" class="series-corner-image"><path fill="#12B886" d="M32 0H0v48h.163l16-16L32 47.836V0z"></path></svg><div class="sc-frDJqD dGZweJ"><div class="sc-hmzhuo haUgty"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>목록 보기</div><div class="sc-ksYbfQ hPdETb"><div class="series-number">1<!-- -->/<!-- -->1</div><div class="sc-kvZOFW hyEQuG"><button disabled="" class="sc-hqyNC cBCqdf"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></button><button disabled="" class="sc-hqyNC cBCqdf"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></div></div></div></div></div></div><div class="sc-feJyhm kMGsFz"><div class="sc-ktHwxA cMcBlN"><div class="sc-cIShpX cnidFS atom-one-light"><p>Github: <a href="https://github.com/pss2138/Udacity-Programming-for-Data-Science-with-Python-Project2">https://github.com/pss2138/Udacity-Programming-for-Data-Science-with-Python-Project2</a></p>
+<p>import time<br>
+import pandas as pd<br>
+import numpy as np</p>
+<p>CITY_DATA = { 'chicago': 'chicago.csv',<br>
+'new york city': 'new_york_city.csv',<br>
+'washington': 'washington.csv' }</p>
+<p>def get_filters(city, month, day):<br>
+"""<br>
+Asks user to specify a city, month, and day to analyze.</p>
+<pre class=" language-null"><code class=" language-null">Returns:
+    (str) city - name of the city to analyze
+    (str) month - name of the month to filter by, or "all" to apply no month filter
+    (str) day - name of the day of week to filter by, or "all" to apply no day filter
+"""
+print('Hello! Let\'s explore some US bikeshare data!')
+# get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+while True:
+    city = input("Write a city name: Chicago, New York City or Washington!").lower()
+    if city not in CITY_DATA:
+        print("\nInvalid answer\n")
+        continue   
+    else:
+        break
+
+while True:
+    time = input("Do you want to filter as month, day, all or none?").lower()               
+    if time == 'month':
+        month = input("Which month? January, Feburary, March, April, May or June?").lower()
+        break
+                
+    elif time == 'day':
+        day = input("Which day? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday").lower()
+        break
+                
+    elif time == 'all':
+        month = input("Which month? January, Feburary, March, April, May or June?").lower()           
+        day = input("Which day? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday").lower()
+        break       
+    elif time == 'none':
+        break       
+    else:
+        input("You wrote the wrong word! Please type it again. month, day, all or none?")
+        break
+
+print(city)
+print(month)
+print(day)
+print('-'*40)
+return city, month, day</code></pre>
+<p>def load_data(city, month, day):<br>
+"""<br>
+Loads data for the specified city and filters by month and day if applicable.</p>
+<pre class=" language-null"><code class=" language-null">Args:
+    (str) city - name of the city to analyze
+    (str) month - name of the month to filter by, or "all" to apply no month filter
+    (str) day - name of the day of week to filter by, or "all" to apply no day filter
+Returns:
+    df - Pandas DataFrame containing city data filtered by month and day
+"""
+df = pd.read_csv(CITY_DATA[city])
+df['Start Time'] = pd.to_datetime(df['Start Time'])
+df['month'] = df['Start Time'].dt.month
+df['day_of_week'] = df['Start Time'].dt.day_name
+
+if month != 'all':
+    months = ['january', 'february', 'march', 'april', 'may', 'june']
+    month = months.index(month) + 1
+    df = df[df['month'] == month]
+
+if day != 'all':
+    df = df[df['day_of_week'] == day]
+
+return df</code></pre>
+<p>def time_stats(df):<br>
+"""Displays statistics on the most frequent times of travel."""</p>
+<pre class=" language-null"><code class=" language-null">print('\nCalculating The Most Frequent Times of Travel...\n')
+start_time = time.time()
+
+# display the most common month
+df['month'] = df['Start Time'].dt.month
+common_month = df['month'].mode()[0]
+print(common_month)
+
+
+# display the most common day of week
+df['day_of_week'] = df['Start Time'].dt.week
+common_day_of_week = df['day_of_week'].mode()[0]
+print(common_day_of_week)
+
+
+# display the most common start hour
+df['hour'] = df['Start Time'].dt.hour
+common_hour = df['hour'].mode()[0]
+print(common_hour)
+
+
+
+print("\nThis took %s seconds." % (time.time() - start_time))
+print('-'*40)</code></pre>
+<p>def station_stats(df):<br>
+"""Displays statistics on the most popular stations and trip."""</p>
+<pre class=" language-null"><code class=" language-null">print('\nCalculating The Most Popular Stations and Trip...\n')
+start_time = time.time()
+
+# display most commonly used start station
+common_start = df['Start Station'].mode()[0]
+print(common_start)
+
+# display most commonly used end station
+common_end = df['End Station'].mode()[0]
+print(common_end)
+
+# display most frequent combination of start station and end station trip
+df['combination'] = df['Start Station'] + ' to ' + df['End Station']
+common_combination = df['combination'].mode()[0]
+print(common_combination)
+
+print("\nThis took %s seconds." % (time.time() - start_time))
+print('-'*40)</code></pre>
+<p>def trip_duration_stats(df):<br>
+"""Displays statistics on the total and average trip duration."""</p>
+<pre class=" language-null"><code class=" language-null">print('\nCalculating Trip Duration...\n')
+start_time = time.time()
+
+# display total travel time
+total_travel = df['Trip Duration'].sum()
+print(total_travel)
+
+# display mean travel time
+mean_travel = df['Trip Duration'].mean()
+print(mean_travel)
+
+print("\nThis took %s seconds." % (time.time() - start_time))
+print('-'*40)</code></pre>
+<p>def user_stats(df):<br>
+"""Displays statistics on bikeshare users."""</p>
+<pre class=" language-null"><code class=" language-null">print('\nCalculating User Stats...\n')
+start_time = time.time()
+
+# Display counts of user types
+user_types = df['User Type'].value_counts()
+print(user_types)
+
+# Display counts of gender
+if 'Gender' in df:
+    gender = df['Gender'].value_counts()
+    print(gender)
+else:
+    print("There is no gender information in this city.")
+
+
+# Display earliest, most recent, and most common year of birth
+if 'Birth_Year' in df:
+    earliest = df['Birth_Year'].min()
+    print(earliest)
+    recent = df['Birth_Year'].max()
+    print(recent)
+    common_birth = df['Birth Year'].mode()[0]
+    print(common_birth)
+else:
+    print("There is no birth year information in this city.")
+
+print("\nThis took %s seconds." % (time.time() - start_time))
+print('-'*40)</code></pre>
+<p>"""Asking 5 lines of the raw data and more, if they want"""<br>
+def data(df):<br>
+raw_data = 0<br>
+while True:<br>
+answer = input("Do you want to see the raw data? Yes or No").lower()<br>
+if answer not in ['yes', 'no']:<br>
+answer = input("You wrote the wrong word. Please type Yes or No.").lower()<br>
+elif answer == 'yes':<br>
+raw_data += 5<br>
+print(df.iloc[raw_data : raw_data + 5])<br>
+again = input("Do you want to see more? Yes or No").lower()<br>
+if again == 'no':<br>
+break<br>
+elif answer == 'no':<br>
+return</p>
+<p>def main():<br>
+city = ""<br>
+month = ""<br>
+day = ""<br>
+while True:<br>
+city, month, day = get_filters(city, month, day)<br>
+df = load_data(city, month, day)</p>
+<pre class=" language-null"><code class=" language-null">    time_stats(df)
+    station_stats(df)
+    trip_duration_stats(df)
+    user_stats(df)
+
+    restart = input('\nWould you like to restart? Enter yes or no.\n')
+    if restart.lower() != 'yes':
+        break</code></pre>
+<p>if <strong>name</strong> == "<strong>main</strong>":<br>
+main()</p></div></div></div><div class="sc-kgAjT gXJKuQ sc-bAeIUo gIhJnU"><div class="sc-hZSUBg khCYcH"><div class="sc-cMhqgX jsttEJ"><a href="https://velog.io/@pss2138"><img src="./Bikeshare Project in Udacity_files/social.png" alt="profile"></a><div class="sc-iuJeZd fSrayF"><div class="name"><a href="https://velog.io/@pss2138">Seongsu Park</a></div><div class="description">Understanding is the first step to administration</div></div></div><div class="sc-esOvli bFyQqg"></div><div class="sc-cmthru iVmoAb"></div></div></div><div class="sc-kgAjT gXJKuQ sc-iQNlJl jPsAhu"><div class="sc-bsbRJL izStRs"></div><div class="sc-bsbRJL izStRs"></div></div><div class="sc-kgAjT gXJKuQ sc-iELTvK cGalOa"><h4>0<!-- -->개의 댓글</h4><div class="sc-cmTdod kHxQNt"><div class="sc-jwKygS zJaCr"><textarea placeholder="댓글을 작성하세요" class="sc-btzYZH BVLvn" style="height: 70px;"></textarea><div class="buttons-wrapper"><button color="teal" class="sc-dnqmqq gzELJz">댓글 <!-- -->작성</button></div></div><div class="sc-hwwEjo hQpbXX"><div class="sc-iyvyFf kwHKAa"></div></div></div></div></div><div class="Toastify"></div></div><script>window.__APOLLO_STATE__={"$ROOT_QUERY.velog_config({\"username\":\"pss2138\"})":{"title":null,"logo_image":null,"__typename":"VelogConfig"},"ROOT_QUERY":{"velog_config({\"username\":\"pss2138\"})":{"type":"id","generated":true,"id":"$ROOT_QUERY.velog_config({\"username\":\"pss2138\"})","typename":"VelogConfig"},"auth":null,"post({\"url_slug\":\"Bikeshare-Project-in-Udacity\",\"username\":\"pss2138\"})":{"type":"id","generated":false,"id":"Post:55dc7688-0855-471e-9194-446634d632ae","typename":"Post"}},"Post:55dc7688-0855-471e-9194-446634d632ae":{"id":"55dc7688-0855-471e-9194-446634d632ae","title":"Bikeshare Project in Udacity","released_at":"2020-04-03T05:16:45.215Z","updated_at":"2020-08-29T12:42:38.237Z","tags":{"type":"json","json":[]},"body":"Github: https://github.com/pss2138/Udacity-Programming-for-Data-Science-with-Python-Project2\n\n\nimport time\nimport pandas as pd\nimport numpy as np\n\nCITY_DATA = { 'chicago': 'chicago.csv',\n              'new york city': 'new_york_city.csv',\n              'washington': 'washington.csv' }\n\ndef get_filters(city, month, day):\n    \"\"\"\n    Asks user to specify a city, month, and day to analyze.\n\n    Returns:\n        (str) city - name of the city to analyze\n        (str) month - name of the month to filter by, or \"all\" to apply no month filter\n        (str) day - name of the day of week to filter by, or \"all\" to apply no day filter\n    \"\"\"\n    print('Hello! Let\\'s explore some US bikeshare data!')\n    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs\n    while True:\n        city = input(\"Write a city name: Chicago, New York City or Washington!\").lower()\n        if city not in CITY_DATA:\n            print(\"\\nInvalid answer\\n\")\n            continue   \n        else:\n            break\n\n    while True:\n        time = input(\"Do you want to filter as month, day, all or none?\").lower()               \n        if time == 'month':\n            month = input(\"Which month? January, Feburary, March, April, May or June?\").lower()\n            break\n                    \n        elif time == 'day':\n            day = input(\"Which day? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday\").lower()\n            break\n                    \n        elif time == 'all':\n            month = input(\"Which month? January, Feburary, March, April, May or June?\").lower()           \n            day = input(\"Which day? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday\").lower()\n            break       \n        elif time == 'none':\n            break       \n        else:\n            input(\"You wrote the wrong word! Please type it again. month, day, all or none?\")\n            break\n\n    print(city)\n    print(month)\n    print(day)\n    print('-'*40)\n    return city, month, day\n\ndef load_data(city, month, day):\n    \"\"\"\n    Loads data for the specified city and filters by month and day if applicable.\n\n    Args:\n        (str) city - name of the city to analyze\n        (str) month - name of the month to filter by, or \"all\" to apply no month filter\n        (str) day - name of the day of week to filter by, or \"all\" to apply no day filter\n    Returns:\n        df - Pandas DataFrame containing city data filtered by month and day\n    \"\"\"\n    df = pd.read_csv(CITY_DATA[city])\n    df['Start Time'] = pd.to_datetime(df['Start Time'])\n    df['month'] = df['Start Time'].dt.month\n    df['day_of_week'] = df['Start Time'].dt.day_name\n\n    if month != 'all':\n        months = ['january', 'february', 'march', 'april', 'may', 'june']\n        month = months.index(month) + 1\n        df = df[df['month'] == month]\n    \n    if day != 'all':\n        df = df[df['day_of_week'] == day]\n\n    return df\n\n\ndef time_stats(df):\n    \"\"\"Displays statistics on the most frequent times of travel.\"\"\"\n\n    print('\\nCalculating The Most Frequent Times of Travel...\\n')\n    start_time = time.time()\n\n    # display the most common month\n    df['month'] = df['Start Time'].dt.month\n    common_month = df['month'].mode()[0]\n    print(common_month)\n\n\n    # display the most common day of week\n    df['day_of_week'] = df['Start Time'].dt.week\n    common_day_of_week = df['day_of_week'].mode()[0]\n    print(common_day_of_week)\n\n\n    # display the most common start hour\n    df['hour'] = df['Start Time'].dt.hour\n    common_hour = df['hour'].mode()[0]\n    print(common_hour)\n\n    \n\n    print(\"\\nThis took %s seconds.\" % (time.time() - start_time))\n    print('-'*40)\n\n\n\ndef station_stats(df):\n    \"\"\"Displays statistics on the most popular stations and trip.\"\"\"\n\n    print('\\nCalculating The Most Popular Stations and Trip...\\n')\n    start_time = time.time()\n\n    # display most commonly used start station\n    common_start = df['Start Station'].mode()[0]\n    print(common_start)\n\n    # display most commonly used end station\n    common_end = df['End Station'].mode()[0]\n    print(common_end)\n\n    # display most frequent combination of start station and end station trip\n    df['combination'] = df['Start Station'] + ' to ' + df['End Station']\n    common_combination = df['combination'].mode()[0]\n    print(common_combination)\n\n    print(\"\\nThis took %s seconds.\" % (time.time() - start_time))\n    print('-'*40)\n\n\ndef trip_duration_stats(df):\n    \"\"\"Displays statistics on the total and average trip duration.\"\"\"\n\n    print('\\nCalculating Trip Duration...\\n')\n    start_time = time.time()\n\n    # display total travel time\n    total_travel = df['Trip Duration'].sum()\n    print(total_travel)\n\n    # display mean travel time\n    mean_travel = df['Trip Duration'].mean()\n    print(mean_travel)\n\n    print(\"\\nThis took %s seconds.\" % (time.time() - start_time))\n    print('-'*40)\n\n\ndef user_stats(df):\n    \"\"\"Displays statistics on bikeshare users.\"\"\"\n\n    print('\\nCalculating User Stats...\\n')\n    start_time = time.time()\n\n    # Display counts of user types\n    user_types = df['User Type'].value_counts()\n    print(user_types)\n\n    # Display counts of gender\n    if 'Gender' in df:\n        gender = df['Gender'].value_counts()\n        print(gender)\n    else:\n        print(\"There is no gender information in this city.\")\n\n\n    # Display earliest, most recent, and most common year of birth\n    if 'Birth_Year' in df:\n        earliest = df['Birth_Year'].min()\n        print(earliest)\n        recent = df['Birth_Year'].max()\n        print(recent)\n        common_birth = df['Birth Year'].mode()[0]\n        print(common_birth)\n    else:\n        print(\"There is no birth year information in this city.\")\n\n    print(\"\\nThis took %s seconds.\" % (time.time() - start_time))\n    print('-'*40)\n\n\"\"\"Asking 5 lines of the raw data and more, if they want\"\"\"\ndef data(df):\n    raw_data = 0\n    while True:\n        answer = input(\"Do you want to see the raw data? Yes or No\").lower()\n        if answer not in ['yes', 'no']:\n            answer = input(\"You wrote the wrong word. Please type Yes or No.\").lower()\n        elif answer == 'yes':\n            raw_data += 5\n            print(df.iloc[raw_data : raw_data + 5])\n            again = input(\"Do you want to see more? Yes or No\").lower()\n            if again == 'no':\n                break\n        elif answer == 'no':\n            return\n\n\ndef main():\n    city = \"\"\n    month = \"\"\n    day = \"\"\n    while True:\n        city, month, day = get_filters(city, month, day)\n        df = load_data(city, month, day)\n\n        time_stats(df)\n        station_stats(df)\n        trip_duration_stats(df)\n        user_stats(df)\n\n        restart = input('\\nWould you like to restart? Enter yes or no.\\n')\n        if restart.lower() != 'yes':\n            break\n\n\nif __name__ == \"__main__\":\n\tmain()\n","short_description":"import timeimport pandas as pdimport numpy as npCITY_DATA = { 'chicago': 'chicago.csv',              'new york city': 'new_york_city.csv',            ","is_markdown":true,"is_private":false,"is_temp":false,"thumbnail":null,"comments_count":0,"url_slug":"Bikeshare-Project-in-Udacity","likes":0,"liked":false,"user":{"type":"id","generated":false,"id":"User:b2118113-d31b-4f4b-b36c-3ae6a1d457d2","typename":"User"},"comments":[],"__typename":"Post","series":{"type":"id","generated":false,"id":"Series:ff21973c-952a-4863-9cb6-0d7681fd2687","typename":"Series"},"linked_posts":{"type":"id","generated":true,"id":"$Post:55dc7688-0855-471e-9194-446634d632ae.linked_posts","typename":"LinkedPosts"}},"User:b2118113-d31b-4f4b-b36c-3ae6a1d457d2":{"id":"b2118113-d31b-4f4b-b36c-3ae6a1d457d2","username":"pss2138","profile":{"type":"id","generated":false,"id":"UserProfile:34a016aa-fd5e-48c8-88f2-0dbdec1c8245","typename":"UserProfile"},"velog_config":{"type":"id","generated":true,"id":"$User:b2118113-d31b-4f4b-b36c-3ae6a1d457d2.velog_config","typename":"VelogConfig"},"__typename":"User"},"UserProfile:34a016aa-fd5e-48c8-88f2-0dbdec1c8245":{"id":"34a016aa-fd5e-48c8-88f2-0dbdec1c8245","display_name":"Seongsu Park","thumbnail":"https://images.velog.io/images/pss2138/profile/0c38e0c0-7eb0-4e5f-a477-150c44b65380/social.png","short_bio":"Understanding is the first step to administration","profile_links":{"type":"json","json":{}},"__typename":"UserProfile"},"$User:b2118113-d31b-4f4b-b36c-3ae6a1d457d2.velog_config":{"title":null,"__typename":"VelogConfig"},"Series:ff21973c-952a-4863-9cb6-0d7681fd2687":{"id":"ff21973c-952a-4863-9cb6-0d7681fd2687","name":"Projects","url_slug":"Projects","series_posts":[{"type":"id","generated":false,"id":"SeriesPost:f88d883a-8774-47ea-a65d-51c0dd340ecc","typename":"SeriesPost"}],"__typename":"Series"},"SeriesPost:f88d883a-8774-47ea-a65d-51c0dd340ecc":{"id":"f88d883a-8774-47ea-a65d-51c0dd340ecc","post":{"type":"id","generated":false,"id":"Post:55dc7688-0855-471e-9194-446634d632ae","typename":"Post"},"__typename":"SeriesPost"},"$Post:55dc7688-0855-471e-9194-446634d632ae.linked_posts":{"previous":null,"next":null,"__typename":"LinkedPosts"}};</script><script>window.__REDUX_STATE__={"core":{"layer":false,"auth":{"visible":false,"mode":"LOGIN"},"user":null,"popup":{"visible":false,"title":"","message":""}},"write":{"mode":"MARKDOWN","markdown":"","title":"","html":"","tags":[],"publish":false,"textBody":"","defaultDescription":"","description":"","isPrivate":false,"urlSlug":"","thumbnail":null,"editSeries":false,"selectedSeries":null,"postId":null,"isTemp":false,"initialTitle":"","initialBody":""},"header":{"custom":true,"userLogo":{"title":null,"logo_image":null},"username":"pss2138"},"post":{"id":null},"error":{"errorType":null},"scroll":{"main":0,"user/posts":0}};</script><script id="__LOADABLE_REQUIRED_CHUNKS__" type="application/json">[16,0,21,1,3]</script><script async="" data-chunk="main" src="./Bikeshare Project in Udacity_files/runtime-main.a2e86c39.js.download"></script><script async="" data-chunk="main" src="./Bikeshare Project in Udacity_files/18.6ea46c66.chunk.js.download"></script><script async="" data-chunk="main" src="./Bikeshare Project in Udacity_files/main.e7dd09ea.chunk.js.download"></script><script async="" data-chunk="pages-velog-VelogPage" src="./Bikeshare Project in Udacity_files/pages-velog-VelogPage.a264c56a.chunk.js.download"></script><script async="" data-chunk="PostPage" src="./Bikeshare Project in Udacity_files/0.7f967f47.chunk.js.download"></script><script async="" data-chunk="PostPage" src="./Bikeshare Project in Udacity_files/21.69db74a2.chunk.js.download"></script><script async="" data-chunk="PostPage" src="./Bikeshare Project in Udacity_files/1.f84319cc.chunk.js.download"></script><script async="" data-chunk="PostPage" src="./Bikeshare Project in Udacity_files/PostPage.506c08d0.chunk.js.download"></script><textarea tab-index="-1" aria-hidden="true" style="min-height: 0px !important; max-height: none !important; height: 0px !important; visibility: hidden !important; overflow: hidden !important; position: absolute !important; z-index: -1000 !important; top: 0px !important; right: 0px !important; letter-spacing: normal; line-height: 28px; font-family: -apple-system, BlinkMacSystemFont, &quot;Helvetica Neue&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, &quot;맑은 고딕&quot;, 나눔고딕, &quot;Nanum Gothic&quot;, &quot;Noto Sans KR&quot;, &quot;Noto Sans CJK KR&quot;, arial, 돋움, Dotum, Tahoma, Geneva, sans-serif; font-weight: 400; font-size: 16px; font-style: normal; tab-size: 8; text-rendering: auto; text-transform: none; width: 768px; text-indent: 0px; padding: 16px 16px 24px; border-width: 1px; box-sizing: border-box;"></textarea><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div></body></html>
